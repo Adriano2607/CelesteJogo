@@ -5,6 +5,7 @@
 package telas;
 
 import dados.Livros;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import static telas.CadastrarLivro.livros;
 
@@ -13,6 +14,7 @@ import static telas.CadastrarLivro.livros;
  * @author João
  */
 public class lojajD extends javax.swing.JDialog {
+
     DefaultTableModel modelList = new DefaultTableModel();
 
     /**
@@ -202,29 +204,55 @@ public class lojajD extends javax.swing.JDialog {
     private void SearchjBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchjBActionPerformed
         // TODO add your handling code here:
         String titulo = NameTF.getText();
-        String autor = AutorTF.getText();
-        String genero = CategoryTF.getText();
-        String ano = YearTF.getText();
-        
-        modelList.addColumn("Livro");
-        modelList.addColumn("Autor");
-        modelList.addColumn("Gênero");
-        modelList.addColumn("Ano");
-        
-        for(Livros lista: livros) {
-           modelList.addRow(new Object[]{
-               lista.getNome().equalsIgnoreCase(titulo) &&
-                lista.getAutor().equalsIgnoreCase(autor) &&
-                lista.getGenero().equalsIgnoreCase(genero) &&
-                lista.getAno().equalsIgnoreCase(ano)});
+//        String autor = AutorTF.getText();
+//        String genero = CategoryTF.getText();
+//        String ano = YearTF.getText();
+//        
+//        modelList.addColumn("Livro");
+//        modelList.addColumn("Autor");
+//        modelList.addColumn("Gênero");
+//        modelList.addColumn("Ano");
+//        
+//        for(Livros lista: livros) {
+//           modelList.addRow(new Object[]{
+//               lista.getNome().equalsIgnoreCase(titulo) &&
+//                lista.getAutor().equalsIgnoreCase(autor) &&
+//                lista.getGenero().equalsIgnoreCase(genero) &&
+//                lista.getAno().equalsIgnoreCase(ano)});
+//        }
+//        
+//        modelList.setColumnCount(4);
+//        modelList.setRowCount(2);
+//
+//        TablejT.setModel(modelList);
+
+        for (Livros livro : livros) {
+            if (livro.getNome().contains(titulo)) {
+                modelList.addColumn("Livro");
+                      modelList.addColumn("Autor");
+                            modelList.addColumn("Genero");
+                                  modelList.addColumn("Ano");
+                modelList.addRow(new Object[]{
+                      livro.getNome(),
+                        livro.getAutor(),
+                        livro.getGenero(),
+                        livro.getAno()
+                });
+                        
+                        }
         }
         
-        modelList.setColumnCount(4);
-        modelList.setRowCount(2);
-
-        TablejT.setModel(modelList);
+         TablejT.setModel(modelList);
+           
+         //celeste melhor jogador do mundo 
     }//GEN-LAST:event_SearchjBActionPerformed
+     
+    
+    
+    
 
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         NameTF.setText("");
@@ -279,7 +307,7 @@ public class lojajD extends javax.swing.JDialog {
     private javax.swing.JTextField AutorTF;
     private javax.swing.JButton BackjB;
     private javax.swing.JTextField CategoryTF;
-    private javax.swing.JTextField NameTF;
+    public static javax.swing.JTextField NameTF;
     private javax.swing.JButton SearchjB;
     private javax.swing.JLabel SubjL;
     private javax.swing.JTable TablejT;

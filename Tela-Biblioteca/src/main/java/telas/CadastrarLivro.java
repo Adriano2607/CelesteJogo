@@ -162,7 +162,21 @@ public class CadastrarLivro extends javax.swing.JFrame {
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         // TODO add your handling code here:
         
-        String Nome = jTextFieldName.getText();
+       
+        if(jTextFieldName.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Insira um nome", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }else if(jTextFieldAutor.getText().isEmpty()){
+         JOptionPane.showMessageDialog(this, "Insira um autor", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }else if(jTextFieldGender.getText().isEmpty()){
+          JOptionPane.showMessageDialog(this, "Insira um genero", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }else if(jTextFieldYear.getText().isEmpty()){
+         JOptionPane.showMessageDialog(this, "Insira um ano", "Aviso", JOptionPane.ERROR_MESSAGE);
+       
+        
+     
+        } else{
+        
+            String Nome = jTextFieldName.getText();
         String Autor = jTextFieldAutor.getText();
         String Genero = jTextFieldGender.getText();
         String Ano = jTextFieldYear.getText();
@@ -176,6 +190,12 @@ public class CadastrarLivro extends javax.swing.JFrame {
         jTextFieldAutor.setText("");
         jTextFieldGender.setText("");
         jTextFieldYear.setText("");
+        this.dispose();
+        
+        }
+        
+        
+        
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
