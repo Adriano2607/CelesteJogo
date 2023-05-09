@@ -4,6 +4,8 @@
  */
 package dados;
 
+import static telas.CadastrarLivro.livros;
+
 /**
  *
  * @author João
@@ -56,6 +58,9 @@ public class Livros {
     public void setAno(String ano) {
         this.ano = ano;
     }
+    
+     
+
 
     
 }

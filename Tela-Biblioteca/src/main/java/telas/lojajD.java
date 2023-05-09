@@ -5,7 +5,7 @@
 package telas;
 
 import dados.Livros;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static telas.CadastrarLivro.livros;
 
@@ -14,8 +14,8 @@ import static telas.CadastrarLivro.livros;
  * @author João
  */
 public class lojajD extends javax.swing.JDialog {
-
-    DefaultTableModel modelList = new DefaultTableModel();
+    
+    DefaultTableModel modelList1 = new DefaultTableModel();
 
     /**
      * Creates new form lojajD
@@ -51,6 +51,7 @@ public class lojajD extends javax.swing.JDialog {
         TablejT = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        adaw = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,6 +75,15 @@ public class lojajD extends javax.swing.JDialog {
                 NameTFActionPerformed(evt);
             }
         });
+
+        AutorTF.setEditable(false);
+        AutorTF.setEnabled(false);
+
+        CategoryTF.setEditable(false);
+        CategoryTF.setEnabled(false);
+
+        YearTF.setEditable(false);
+        YearTF.setEnabled(false);
 
         SearchjB.setText("Buscar");
         SearchjB.addActionListener(new java.awt.event.ActionListener() {
@@ -99,10 +109,23 @@ public class lojajD extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Título", "Autor", "Categoria", "Ano de Publicação"
+                "Nome", "Autor", "Genero", "Ano"
             }
         ));
+        TablejT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablejTMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(TablejT);
+
+        adaw.setText("Excluir");
+        adaw.setEnabled(false);
+        adaw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adawActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,18 +168,20 @@ public class lojajD extends javax.swing.JDialog {
                                 .addComponent(TittlejL))
                             .addComponent(SubjL)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(50, 50, 50)
                         .addComponent(SearchjB)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
+                        .addComponent(adaw)
+                        .addGap(24, 24, 24)
                         .addComponent(jButton2)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addComponent(BackjB)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(TittlejL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SubjL)
@@ -178,17 +203,17 @@ public class lojajD extends javax.swing.JDialog {
                     .addComponent(CategoryTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchjB)
                     .addComponent(BackjB)
-                    .addComponent(jButton2))
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(adaw))
+                .addGap(17, 17, 17)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(466, 508));
+        setSize(new java.awt.Dimension(466, 496));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,64 +227,86 @@ public class lojajD extends javax.swing.JDialog {
     }//GEN-LAST:event_NameTFActionPerformed
 
     private void SearchjBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchjBActionPerformed
-        // TODO add your handling code here:
-        String titulo = NameTF.getText();
-//        String autor = AutorTF.getText();
-//        String genero = CategoryTF.getText();
-//        String ano = YearTF.getText();
-//        
-//        modelList.addColumn("Livro");
-//        modelList.addColumn("Autor");
-//        modelList.addColumn("Gênero");
-//        modelList.addColumn("Ano");
-//        
-//        for(Livros lista: livros) {
-//           modelList.addRow(new Object[]{
-//               lista.getNome().equalsIgnoreCase(titulo) &&
-//                lista.getAutor().equalsIgnoreCase(autor) &&
-//                lista.getGenero().equalsIgnoreCase(genero) &&
-//                lista.getAno().equalsIgnoreCase(ano)});
-//        }
-//        
-//        modelList.setColumnCount(4);
-//        modelList.setRowCount(2);
-//
-//        TablejT.setModel(modelList);
-
-        for (Livros livro : livros) {
-            if (livro.getNome().contains(titulo)) {
-                modelList.addColumn("Livro");
-                      modelList.addColumn("Autor");
-                            modelList.addColumn("Genero");
-                                  modelList.addColumn("Ano");
-                modelList.addRow(new Object[]{
-                      livro.getNome(),
-                        livro.getAutor(),
-                        livro.getGenero(),
-                        livro.getAno()
-                });
-                        
-                        }
-        }
         
-         TablejT.setModel(modelList);
-           
-         //celeste melhor jogador do mundo 
+        if (NameTF.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "!!!!", "Aviso", JOptionPane.ERROR_MESSAGE);
+        } else if (!buscarLivro(NameTF.getText())) {
+            JOptionPane.showMessageDialog(this, "Sem registros", "Aviso", JOptionPane.ERROR_MESSAGE);
+            NameTF.setText("");
+        } else {
+            
+            modelList1.setRowCount(0);
+            modelList1.setColumnCount(0);
+            
+            modelList1.addColumn("Titulo");
+            modelList1.addColumn("Autor");
+            modelList1.addColumn("Genero");
+            modelList1.addColumn("Ano");
+            
+            for (Livros livro : livros) {
+                
+                modelList1.addRow(new Object[]{
+                    livro.getNome(),
+                    livro.getAutor(),
+                    livro.getGenero(),
+                    livro.getAno()
+                });
+                
+            }
+            
+        }
+        TablejT.setModel(modelList1);
+
+        //celeste melhor jogador do mundo 
     }//GEN-LAST:event_SearchjBActionPerformed
-     
     
-    
+    public boolean buscarLivro(String titulo) {
+        for (Livros livro : livros) {
+            if (livro.getNome().toLowerCase().contains(titulo)) {
+                return true;
+            }
+        }
+        return false;
+    }
     
 
-    
-    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+
         NameTF.setText("");
         AutorTF.setText("");
         CategoryTF.setText("");
         YearTF.setText("");
+        modelList1.setRowCount(0);
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void adawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adawActionPerformed
+        
+        String nomeLivro = TablejT.getValueAt(TablejT.getSelectedRow(), 0).toString();
+        
+        Livros livroParaExclusao = null;
+        for (Livros livro : livros) {
+            if (livro.getNome().equals(nomeLivro)) {
+                livroParaExclusao = livro;
+                break;
+            }
+        }
+        
+        if (livroParaExclusao != null) {
+            livros.remove(livroParaExclusao);
+        }
+        
+        ((DefaultTableModel) TablejT.getModel()).removeRow(TablejT.getSelectedRow());
+        
+        JOptionPane.showMessageDialog(this, "Excluido", "Aviso", JOptionPane.WARNING_MESSAGE);
+        
+
+    }//GEN-LAST:event_adawActionPerformed
+
+    private void TablejTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablejTMouseClicked
+        adaw.setEnabled(true);
+    }//GEN-LAST:event_TablejTMouseClicked
 
     /**
      * @param args the command line arguments
@@ -313,6 +360,7 @@ public class lojajD extends javax.swing.JDialog {
     private javax.swing.JTable TablejT;
     private javax.swing.JLabel TittlejL;
     private javax.swing.JTextField YearTF;
+    private javax.swing.JButton adaw;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

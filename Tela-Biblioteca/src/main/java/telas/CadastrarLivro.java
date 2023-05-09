@@ -9,21 +9,25 @@ import dados.Livros;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author João
  */
 public class CadastrarLivro extends javax.swing.JFrame {
+
     public static ArrayList<Livros> livros = new ArrayList<>();
-    
 
     FluxoLivros FL = new FluxoLivros();
+
     /**
      * Creates new form CadastrarLivro
      */
     public CadastrarLivro() {
         initComponents();
+        jTextFieldName.setText("Celeste");
+        jTextFieldAutor.setText("Bill Gates");
+        jTextFieldGender.setText("Horror");
+        jTextFieldYear.setText("2010");
     }
 
     /**
@@ -161,41 +165,40 @@ public class CadastrarLivro extends javax.swing.JFrame {
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         // TODO add your handling code here:
-        
-       
-        if(jTextFieldName.getText().isEmpty()){
-        JOptionPane.showMessageDialog(this, "Insira um nome", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }else if(jTextFieldAutor.getText().isEmpty()){
-         JOptionPane.showMessageDialog(this, "Insira um autor", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }else if(jTextFieldGender.getText().isEmpty()){
-          JOptionPane.showMessageDialog(this, "Insira um genero", "Aviso", JOptionPane.ERROR_MESSAGE);
-        }else if(jTextFieldYear.getText().isEmpty()){
-         JOptionPane.showMessageDialog(this, "Insira um ano", "Aviso", JOptionPane.ERROR_MESSAGE);
-       
-        
-     
-        } else{
-        
+
+        if (jTextFieldName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Insira um nome", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+        } else if (jTextFieldAutor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Insira um autor", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+        } else if (jTextFieldGender.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Insira um genero", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+        } else if (jTextFieldYear.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Insira um ano", "Aviso", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
             String Nome = jTextFieldName.getText();
-        String Autor = jTextFieldAutor.getText();
-        String Genero = jTextFieldGender.getText();
-        String Ano = jTextFieldYear.getText();
-        
-        Livros books = new Livros(Nome,Autor,Genero,Ano);
-        livros.add(books);
-        
-        JOptionPane.showMessageDialog(this,"Cadastro completo!");
-        
-        jTextFieldName.setText("");
-        jTextFieldAutor.setText("");
-        jTextFieldGender.setText("");
-        jTextFieldYear.setText("");
-        this.dispose();
-        
+            String Autor = jTextFieldAutor.getText();
+            String Genero = jTextFieldGender.getText();
+            String Ano = jTextFieldYear.getText();
+
+            Livros books = new Livros(Nome, Autor, Genero, Ano);
+            livros.add(books);
+
+            JOptionPane.showMessageDialog(this, "Cadastro completo!");
+
+            jTextFieldName.setText("");
+            jTextFieldAutor.setText("");
+            jTextFieldGender.setText("");
+            jTextFieldYear.setText("");
+            this.dispose();
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed

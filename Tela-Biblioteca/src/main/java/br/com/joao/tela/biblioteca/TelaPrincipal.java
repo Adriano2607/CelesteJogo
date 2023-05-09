@@ -4,6 +4,7 @@
  */
 package br.com.joao.tela.biblioteca;
 
+import javax.swing.JOptionPane;
 import telas.CadastrarLivro;
 import telas.VerLivrosJDialog;
 import telas.emprestimosjD;
@@ -45,6 +46,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Menu");
         setPreferredSize(new java.awt.Dimension(500, 450));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jButton1.setText("Cadastrar Livro");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -141,14 +150,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        VerLivrosJDialog view = new VerLivrosJDialog(null,true);
-        view.setVisible(true);
+        if (!CadastrarLivro.livros.isEmpty()) {
+            VerLivrosJDialog view = new VerLivrosJDialog(null, true);
+            view.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nao ha livros", "Aviso", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -168,6 +181,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         opções options = new opções(null, true);
         options.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments

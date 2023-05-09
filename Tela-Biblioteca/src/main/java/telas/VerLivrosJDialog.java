@@ -7,6 +7,7 @@ package telas;
 import controle.FluxoLivros;
 import dados.Livros;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static telas.CadastrarLivro.livros;
 
@@ -15,21 +16,29 @@ import static telas.CadastrarLivro.livros;
  * @author João
  */
 public class VerLivrosJDialog extends javax.swing.JDialog {
+
     DefaultTableModel modelList = new DefaultTableModel();
 
     FluxoLivros FL;
+
     /**
      * Creates new form VerLivrosJDialog
      */
     public VerLivrosJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+       
+        listarLivros();
+       
+        
+       
     }
-    
+
     public VerLivrosJDialog(java.awt.Frame parent, boolean modal, FluxoLivros FL) {
         super(parent, modal);
         this.FL = FL;
         initComponents();
+       
     }
 
     /**
@@ -65,7 +74,7 @@ public class VerLivrosJDialog extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jtTabela);
 
-        RefreshjB.setText("Atualizar");
+        RefreshjB.setText("Excluir");
         RefreshjB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RefreshjBActionPerformed(evt);
@@ -99,26 +108,40 @@ public class VerLivrosJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void listarLivros() {
+         DefaultTableModel modelLista = new DefaultTableModel();
+        for (Livros livro : livros) {
+
+            modelLista.addColumn("Livro");
+            modelLista.addColumn("Autor");
+            modelLista.addColumn("Genero");
+            modelLista.addColumn("Ano");
+            modelLista.addRow(new Object[]{
+                livro.getNome(),
+                livro.getAutor(),
+                livro.getGenero(),
+                livro.getAno()
+            });
+
+        }
+
+        jtTabela.setModel(modelLista);
+
+    }
+
+
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void RefreshjBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshjBActionPerformed
-        // TODO add your handling code here:
-        modelList.addColumn("Livro");
-        modelList.addColumn("Autor");
-        modelList.addColumn("Gênero");
-        modelList.addColumn("Ano");
+
+       
+      
         
-        for(Livros lista: livros) {
-           modelList.addRow(new Object[]{
-               lista.getNome(),lista.getAutor(),lista.getGenero(),lista.getAno()});
-        }
-        modelList.setColumnCount(4);
-        modelList.setRowCount(2);
         
-        jtTabela.setModel(modelList);
+        
     }//GEN-LAST:event_RefreshjBActionPerformed
 
     /**
